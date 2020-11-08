@@ -44,9 +44,7 @@ void  main(void)
 //     ADC_ch10 = ADC_GetConversionValue(ADC1);
 //  }
   
-#ifndef USE_FRSKY  
-  StateBLDC.k = ((Spi_message_value_max)/(Autoreload_Tim1))-1;// Расчет коэффициента для перерасчета значения GASa по SPI 
-#endif
+
   StateBLDC.MaxGas = Autoreload_Tim1;
   StateBLDC.SenceEnable = 1;
   StateBLDC.Operegenie = OperegenieDefine;
@@ -91,6 +89,12 @@ void  main(void)
 StateBLDC.MaxGas = Autoreload_Tim1;
 TIM_ITConfig(TIM16, TIM_IT_CC1, ENABLE);
 StateBLDC.k = ((IMPULS_MAX_FRSKY-IMPULS_MID_FRSKY))/StateBLDC.MaxGas;// Расчет коэффициента для перерасчета значения GASa 
+#elif USE_SBUS
+StateBLDC.MaxGas = Autoreload_Tim1;
+StateBLDC.k = ((SBUS_message_GASvalue_max)/(Autoreload_Tim1))-1;// Расчет коэффициента для перерасчета значения GASa по SBUS
+#elif USE_FRSKY  
+  StateBLDC.k = ((Spi_message_value_max)/(Autoreload_Tim1))-1;// Расчет коэффициента для перерасчета значения GASa по SPI 
+#endif
   
 #endif 
  

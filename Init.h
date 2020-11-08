@@ -26,7 +26,9 @@
 #define IMPULS_MAX_FRSKY                (((PCLK2/1000000)/PrescalerTim16)*T_MAX_IMPULS_FRSKY)
 #define IMPULS_MID_FRSKY                (((PCLK2/1000000)/PrescalerTim16)*T_MID_IMPULS_FRSKY)
 #define IMPULS_MIN_FRSKY                (((PCLK2/1000000)/PrescalerTim16)*T_MIN_IMPULS_FRSKY)
-#define USE_FRSKY
+//#define USE_FRSKY
+#define USE_SBUS
+#define SBUS_message_GASvalue_max       0xffff
 
 //ADC_1
 #define phasa_A     ((uint16_t *)0x50000080) //ADC_JDR1   phasa_A PA0   ADC_Channel_1
